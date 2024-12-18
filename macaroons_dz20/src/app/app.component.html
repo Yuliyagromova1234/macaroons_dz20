@@ -1,0 +1,91 @@
+<section class="main" id="mainElement" #mainElement>
+  <div class="container main-container">
+    <div class="main-info">
+      <h1 class="main-title">Мягкие французские пироженки Macaroons</h1>
+      <div class="main-text">Побалуйте себя и своих близких самыми вкусными и ароматными домашними пироженками
+        Macaroon!
+      </div>
+      <div class="main-action">
+        <button class="btn main-action-btn" (click)="scrollTo(productsElement)">Выбрать макарун</button>
+      </div>
+    </div>
+    <div class="main-img"><img src="assets/img/main-img.png" class="main-img-macaroon" alt="macaroons"></div>
+  </div>
+</section>
+<section class="content" id="contentElement">
+  <div class="container content-container">
+    <div class="content-info">
+      <div class="content-info-box">
+        <div class="content-info-title">Мы печём для вас вкуснейшие макаруны уже более 10 лет</div>
+        <div class="content-info-text">Все пироженки мы готовим только из натуральных и качественных продуктов,
+          без консервантов, ароматизаторов, красителей. Используем в приготовлении сливочное масло 82,5%, без
+          дрожжей, маргарина, разрыхлителей и улучшителей муки.
+        </div>
+      </div>
+      <div class="content-info-img">
+        <img src="assets/img/content-img.png" class="content-info-macaroon" alt="macaroon">
+      </div>
+    </div>
+    <div class="content-advantage">
+      <div class="content-advantage-item" *ngFor="let advantage of advantages; let i = index">
+        <div class="content-advantage-circle">
+          <div class="circle-text">{{i+1}}</div>
+        </div>
+        <div class="content-advantage-title">{{advantage.title}}</div>
+        <div class="content-advantage-text">{{advantage.text}}</div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="macaroons" id="macaroonsElement" #productsElement>
+  <div class="container macaroons-container">
+    <h2 class="macaroons-title">Выберите свой макарун</h2>
+    <div class="macaroons-items">
+      <div class="macaroons-item" *ngFor="let product of products; let i = index">
+        <img src="assets/img/{{product.img}}" class="macaroons-item-img" alt="macaroon {{i+1}}">
+        <div class="macaroons-item-title">{{product.name}}</div>
+        <div class="macaroons-item-order">
+          <div class="macaroons-item-text">
+            <div class="macaroons-item-desc">1 шт.</div>
+            <div class="macaroons-item-desc">{{product.price}} руб.</div>
+          </div>
+          <div class="macaroons-item-action">
+            <button class="btn macaroons-item-btn" (click)="addToCart(product, orderElement)">Заказать</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="order" id="orderElement" #orderElement>
+  <div class="container order-container">
+    <div class="order-info">
+      <div class="order-info-img">
+        <img src="assets/img/order-straw-left.png" class="order-info-img-straw" alt="strawberry">
+        <img src="assets/img/order-img.png" class="order-info-img-macaroon" alt="macaroon">
+      </div>
+      <div class="order-info-content">
+        <div class="order-info-title">Закажите макарун!</div>
+        <div class="order-info-text">Выберите понравившийся макарун, заполните форму и ожидайте звонка нашего
+          пекаря!
+        </div>
+        <form class="order-product">
+          <div class="order-product-subtitle">Ваш выбор</div>
+          <input class="order-product-input big-margin" name="choice" [(ngModel)]="formValues.productTitle" placeholder="Напишите, что хотите заказать...">
+          <div class="order-product-subtitle">Заполните данные для заказа</div>
+          <input class="order-product-input" name="name" [(ngModel)]="formValues.name" placeholder="Ваше имя">
+          <input class="order-product-input" name="number" [(ngModel)]="formValues.phone"  placeholder="+375 (__) ___ - __ - __">
+          <button type="submit" class="order-product-btn btn" (click)="createOrder()">Оформить заказ</button>
+        </form>
+        <img src="assets/img/order-straw-2.png" class="order-product-img-straw" alt="strawberry">
+      </div>
+    </div>
+  </div>
+</section>
+<div class="present" *ngIf="showPresent">
+  <img src="assets/img/present.png" class="present-img" alt="present">
+  <div class="present-popup">
+    Оформите заказ и получите подарок!
+  </div>
+</div>
+
